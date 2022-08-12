@@ -33,4 +33,18 @@ class StudentController extends Controller
         $ary["resu"]=rtrim($result,",");
         return view('chart2',$ary);
     }
+
+    public function index3()
+    {
+        // $data=DB::table('students')->get();
+        $data=DB::select(DB::raw("select * from order_table"));
+        $result="";
+        foreach($data as $list)
+        {
+            $result.="['".$list->year."', ".$list->sale." , ".$list->buy."],";
+        }
+        // return $result;
+        $ary["resu"]=rtrim($result,",");
+        return view('chart3',$ary);
+    }
 }
